@@ -1,6 +1,7 @@
 /*!
  *  @file       mpEncoder.cpp
- *  Project     MediaPills.
+ *  Project     mediapills::hardware
+ *  @brief      Push Button Rotary Encoder handlers for Arduino platform.
  *  @version    0.0.1
  *  @author     Andrew Yatskovets
  *  @date       16/07/2023

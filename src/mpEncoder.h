@@ -1,6 +1,7 @@
 /*!
- *  @file       ermpLib.h
- *  Project     ERMP_001A Arduino MIDI Clock generator.
+ *  @file       mpEncoder.h
+ *  Project     mediapills::hardware
+ *  @brief      Push Button Rotary Encoder handlers for Arduino platform.
  *  @version    0.0.1
  *  @author     Andrew Yatskovets
  *  @date       16/07/2023
@@ -73,3 +74,5 @@ class mpEncoderClass {
 };
 
 }} // end namespace mediapills::hardware
+
+#endif
