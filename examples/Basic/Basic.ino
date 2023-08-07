@@ -23,7 +23,7 @@
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE. 
+ * DEALINGS IN THE SOFTWARE.
  */
 
 #include "mpEncoder.h"
@@ -39,8 +39,8 @@ using namespace mediapills::hardware;
 // Digital Encoder Knob pin number
 #define ENCODERS_PAD_KNOB_PIN_NO A2
 
-mpEncoderClass encoder(ENCODERS_PAD_A_PIN_NO, ENCODERS_PAD_B_PIN_NO, ENCODERS_PAD_KNOB_PIN_NO);
-
+mpEncoderClass encoder(ENCODERS_PAD_A_PIN_NO, ENCODERS_PAD_B_PIN_NO,
+                       ENCODERS_PAD_KNOB_PIN_NO);
 /*
  * Define encoder handler listeners:
  * - ENCODER_ON_CLICK,
@@ -51,21 +51,15 @@ mpEncoderClass encoder(ENCODERS_PAD_A_PIN_NO, ENCODERS_PAD_B_PIN_NO, ENCODERS_PA
  * - ENCODER_DECREASED
  */
 
-void onClick() {
-  Serial.println("On button rotary encoder click action");
-}
+void onClick() { Serial.println("On button rotary encoder click action"); }
 
 void onDoubleClick() {
   Serial.println("On button rotary encoder double click action");
 }
 
-void onReleased() {
-  Serial.println("On button rotary encoder relese action");
-}
+void onReleased() { Serial.println("On button rotary encoder relese action"); }
 
-void onChanged() {
-  Serial.println("On button rotary encoder rotation action");
-}
+void onChanged() { Serial.println("On button rotary encoder rotation action"); }
 
 void onIncreased() {
   Serial.println("On button rotary encoder clockwise rotation action");
@@ -81,14 +75,12 @@ void setup() {
   encoder.init();
 
   // Set callbacks
-  encoder.setEventListener(encoder.ENCODER_ON_CLICK,        onClick);
+  encoder.setEventListener(encoder.ENCODER_ON_CLICK, onClick);
   encoder.setEventListener(encoder.ENCODER_ON_DOUBLE_CLICK, onDoubleClick);
-  encoder.setEventListener(encoder.ENCODER_RELEASED,        onReleased);
-  encoder.setEventListener(encoder.ENCODER_CHANGED,         onChanged);
-  encoder.setEventListener(encoder.ENCODER_INCREASED,       onIncreased);
-  encoder.setEventListener(encoder.ENCODER_DECREASED,       onDecreased);
+  encoder.setEventListener(encoder.ENCODER_RELEASED, onReleased);
+  encoder.setEventListener(encoder.ENCODER_CHANGED, onChanged);
+  encoder.setEventListener(encoder.ENCODER_INCREASED, onIncreased);
+  encoder.setEventListener(encoder.ENCODER_DECREASED, onDecreased);
 }
 
-void loop() {
-  encoder.excute();
-}
+void loop() { encoder.excute(); }
