@@ -1,15 +1,13 @@
 {
   "name": "mpEncoder",
   "version": "0.0.1",
-    "description": "A Library to implement Push Button Rotary Encoder handlers. Supported and tested on AVR boards(ATmega168/328, ATmega16u4/32u4 and ATmega2560)",
+  "description": "A Library to implement Push Button Rotary Encoder handlers. Supported and tested on AVR boards(ATmega168/328, ATmega16u4/32u4 and ATmega2560)",
   "keywords": "encoder, hardware",
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "https://github.com/mediapills/encoder"
   },
-  "authors":
-  [
+  "authors": [
     {
       "name": "Andrew Yatskovets",
       "email": "contact@mediapills.com",
