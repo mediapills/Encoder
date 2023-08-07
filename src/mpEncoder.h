@@ -5,7 +5,8 @@
  *  @version    0.0.1
  *  @author     Andrew Yatskovets
  *  @date       16/07/2023
- *  @license    MIT - (c) 2023 - Mediapills
+ *
+ * Copyright (c) 2023 MediaPills
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -31,48 +32,52 @@
 
 #include "Arduino.h"
 
-namespace mediapills { namespace hardware {
+namespace mediapills {
+
+namespace hardware {
 
 class mpEncoderClass {
-  private:
-    uint8_t padAPin = NULL;
-    uint8_t padBPin = NULL;
-    uint8_t knobPin = NULL;
+ private:
+  uint8_t padAPin = NULL;
+  uint8_t padBPin = NULL;
+  uint8_t knobPin = NULL;
 
-    bool pressed = false;               //Use this variable to store encoder button state
-    unsigned long lastLOWPulsetime = 0; //Use this to store if the push button was pressed or not
+  // Use this variable to store encoder button state
+  bool pressed = false;
+  // Use this to store if the push button was pressed or not
+  unsigned long lastLOWPulsetime = 0;
 
-    int padState;                       //Store the PREVIOUS status of the clock pin (HIGH or LOW)
+  // Store the PREVIOUS status of the clock pin (HIGH or LOW)
+  int padState;
 
-    void (*onClickCallback)();
-    void (*onDoubleClickCallback)();
-    void (*releasedCallback)();
-    void (*changedCallback)();
-    void (*increasedCallback)();
-    void (*decreasedCallback)();
+  void (*onClickCallback)();
+  void (*onDoubleClickCallback)();
+  void (*onReleasedCallback)();
+  void (*onChangedCallback)();
+  void (*onIncreasedCallback)();  //  Clockwise rotation
+  void (*onDecreasedCallback)();  //  Counterclockwise rotation
 
-    void dispatchEvent(uint8_t mode);
+  void dispatchEvent(uint8_t mode);
 
-    void checkButtonState();
-    void checkEncoderState();
-  public:
-    enum {
-      ENCODER_ON_CLICK,
-      ENCODER_ON_DOUBLE_CLICK,
-      ENCODER_RELEASED,
-      ENCODER_CHANGED,
-      ENCODER_INCREASED,
-      ENCODER_DECREASED
-    };
+  void checkButtonState();
+  void checkEncoderState();
 
-    // constructor
-    mpEncoderClass(uint8_t pad_pin_a, uint8_t pad_pin_b, uint8_t knob_pin);
-    void init();
-    void excute();
+ public:
+  enum { CLICK, DOUBLE_CLICK, RELEASED, CHANGED, INCREASED, DECREASED };
 
-    void setEventListener(byte mode, void (*callback)());
+  // constructor
+  mpEncoderClass(uint8_t pad_pin_a, uint8_t pad_pin_b, uint8_t knob_pin);
+  void init();
+  void handler() {
+    checkButtonState();
+    checkEncoderState();
+  }
+
+  void setEventListener(byte mode, void (*callback)());
 };
 
-}} // end namespace mediapills::hardware
+}  // namespace hardware
+
+}  // namespace mediapills
 
 #endif
